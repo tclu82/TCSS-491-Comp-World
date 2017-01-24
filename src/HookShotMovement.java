@@ -1,7 +1,7 @@
 /**
  * Created by zac on 1/23/17.
  *
- * This class simulate our Hook Shot Hero movement when he shoot the hook shot
+ * This class simulates our Hook Shot Hero movement when he shoot the hook shot
  */
 public class HookShotMovement {
 
