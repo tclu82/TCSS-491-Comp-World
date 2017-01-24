@@ -1,5 +1,3 @@
-import java.awt.*;
-
 /**
  * Created by zac on 1/23/17.
  *
@@ -57,19 +55,28 @@ public class HookShotMovement {
     /**
      * This method calculus how our hero move by degree
      *
+     * Assume that top left is (-length, 0) which is a starting point, degree is 0,
+     * and the center is set to (0,0).
+     *
+     * When the hero move to bottom which degree is -90 from starting point,
+     * the coordination is (0, -length).
+     *
+     * When the hero move to top right, it's position is (length, 0)
+     *
      * @param moveByDegree
      */
     public void heroMove(int moveByDegree) {
 
         for (int degree=0; degree>=-180; degree-= moveByDegree) {
 
-            currentPoint.x = Math.cos(Math.toRadians(degree));
-            currentPoint.y = Math.sin(Math.toRadians(degree));
+            currentPoint.x = Math.cos(Math.toRadians(degree)) * hookShotLength;
+
+            currentPoint.y = Math.sin(Math.toRadians(degree)) * hookShotLength;
 
             String position = String.format("Degree: %d, X: %.3f, Y: %.3f",
                     degree,
-                    -currentPoint.x * hookShotLength,
-                    currentPoint.y * hookShotLength);
+                    -currentPoint.x,
+                    currentPoint.y);
 
             System.out.println(position);
         }
@@ -84,30 +91,54 @@ public class HookShotMovement {
         System.out.println("============Program start==========");
         // Decide how long hero's hook shot is
         HookShotMovement hsm = new HookShotMovement(100);
-        // Change the degree you want, the smaller degree number, display more positions
-        hsm.heroMove(10);
+        // Change the integer degree 0~180, the smaller degree number, display more positions
+        hsm.heroMove(45);
     }
 
     /**
      * Private Point class
      */
     private class Point {
-        double x;
-        double y;
 
+        // Fields
+        private double x;
+
+        private double y;
+
+        /**
+         * Private constructor, HookShotMovement class use only
+         *
+         * @param x
+         * @param y
+         */
         private Point(double x, double y) {
             this.x = x;
             this.y = y;
         }
 
+        /**
+         * Get x coordination
+         *
+         * @return
+         */
         public double getX() {
             return x;
         }
 
+        /**
+         * Get y coordination
+         *
+         * @return
+         */
         public double getY() {
             return y;
         }
 
+        /**
+         * Get Point position
+         *
+         * @return
+         */
         public Point getPoint() {
             return new Point(x, y);
         }
