@@ -1,3 +1,5 @@
+import java.math.*;
+
 /**
  * Created by zac on 1/23/17.
  *
@@ -69,6 +71,18 @@ public class HookShotMovement {
 
         for (int degree=0; degree>=-180; degree-= moveByDegree) {
 
+            /**
+             * In Java, Math.cos(Math.toRadians(degree)) can be writte Math.sin(30 / 180 * Math.PI) in JavaScript or
+
+                 // Converts from degrees to radians.
+                 Math.radians = function(degrees) {
+                    return degrees * Math.PI / 180;
+                 };
+
+                 x = Math.cos(Math.radians(theDegreeWeWantT));
+                 y = Math.sin(Math.radians(theDegreeWeWantT));
+             *
+             */
             currentPoint.x = Math.cos(Math.toRadians(degree)) * hookShotLength;
 
             currentPoint.y = Math.sin(Math.toRadians(degree)) * hookShotLength;
